@@ -12,7 +12,9 @@ const router = new Router();
 
 function filterProviders(team: Team) {
   return providers
-    .sort((provider) => (provider.id === "email" ? 1 : -1))
+    .sort((provider) =>
+      (console.log(provider.id), provider.id) === "email" ? 1 : -1
+    )
     .filter((provider) => {
       // guest sign-in is an exception as it does not have an authentication
       // provider using passport, instead it exists as a boolean option on the team
@@ -44,6 +46,7 @@ router.post("auth.config", async (ctx) => {
 
     if (teams.length === 1) {
       const team = teams[0];
+      console.log(team.authenticationProviders);
       ctx.body = {
         data: {
           name: team.name,

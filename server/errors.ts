@@ -156,3 +156,11 @@ export function AuthenticationProviderDisabledError(
     id: "authentication_provider_disabled",
   });
 }
+
+export function ForbiddenError(
+  message = "You do not have permission to access this resource"
+) {
+  return httpErrors(403, message, {
+    id: "not_whitelisted",
+  });
+}

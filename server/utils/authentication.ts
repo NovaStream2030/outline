@@ -17,6 +17,16 @@ export function isDomainAllowed(domain: string): boolean {
   return allowedDomains.includes(domain) || allowedDomains.length === 0;
 }
 
+export function getAllowedVkUsers(): string[] {
+  const env = process.env.VK_ALLOWED_USERS;
+  return env ? env.split(",") : [];
+}
+
+export function isVkUserAllowed(user: string): boolean {
+  const allowedDomains = getAllowedVkUsers();
+  return allowedDomains.includes(user) || allowedDomains.length === 0;
+}
+
 export async function signIn(
   ctx: Context,
   user: User,
